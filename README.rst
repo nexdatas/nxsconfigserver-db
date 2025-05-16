@@ -69,7 +69,7 @@ with proper privileges.
 Debian packages
 ^^^^^^^^^^^^^^^
 
-Debian Bookworm, Bullseye, Buster as well as Oracular, Noble, Jammy packages can be found in the HDRI repository.
+Debian Bookworm, Bullseye, Buster as well as Plucky, Noble, Jammy packages can be found in the HDRI repository.
 
 To install the debian packages, add the PGP repository key
 
