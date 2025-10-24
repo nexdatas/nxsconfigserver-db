@@ -44,3 +44,7 @@ jobs:
         run: .ci/install.sh ${OSYS} 3
       - name: run tests
         run: .ci/run.sh 3
+      - name: Stop the docker
+        run: |
+             docker exec  --user root ndts  /bin/bash -c "chown -R 1001 /home/tango "
+             docker container stop ndts
