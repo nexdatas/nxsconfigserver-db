@@ -1,6 +1,6 @@
 FROM debian:bookworm
 
-MAINTAINER DESY, Jan Kotanski <jankotan@gmail.com>
+# MAINTAINER DESY, Jan Kotanski <jankotan@gmail.com>
 RUN /bin/bash -c 'echo "deb http://ftp.de.debian.org/debian bookworm main" > /etc/apt/sources.list.d/debiande.list'
 RUN apt-get update
 RUN apt-get install -y base-passwd
@@ -8,7 +8,7 @@ RUN apt-get -qq update && apt-get -qq install -y libterm-readline-gnu-perl softw
 RUN wget --retry-connrefused http://repos.pni-hdri.de/debian_repo.pub.gpg
 RUN apt-key add debian_repo.pub.gpg
 #RUN add-apt-repository "deb http://repos.pni-hdri.de/apt/debian buster main" -y
-RUN cd /etc/apt/sources.list.d && wget http://repos.pni-hdri.de/bookworm-pni-hdri.list
+RUN cd /etc/apt/sources.list.d && wget http://repos.pni-hdri.de/bookworm-pni-hdri.sources
 
 RUN apt-get -qq update && apt-get -qq -y dist-upgrade
 RUN apt-get -qq update && apt-get -qq install -y default-mysql-client  python3-h5py  python3-sphinx  apt-utils debconf-utils net-tools  omniidl libomniorb4-dev libcos4-dev libomnithread4-dev libzmq3-dev python3-setuptools
