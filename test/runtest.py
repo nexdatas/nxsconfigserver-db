@@ -22,6 +22,9 @@
 
 import sys
 
+import unittest
+import NXSConfigServerDB_test
+
 try:
     __import__("PyTango")
     # if module PyTango avalable
@@ -49,8 +52,6 @@ except ImportError as e:
     H5PY_AVAILABLE = False
     print("h5py is not available: %s" % e)
 
-
-import unittest
 
 if not PNI_AVAILABLE and not H5PY_AVAILABLE:
     raise Exception("Please install h5py or pni")
@@ -144,9 +145,9 @@ def main():
     # test suit
     suite = unittest.TestSuite()
 
-    # suite.addTests(
-    #   unittest.defaultTestLoader.loadTestsFromModule(
-    #        DBFieldTagAsynchH5PYTest) )
+    suite.addTests(
+      unittest.defaultTestLoader.loadTestsFromModule(
+          NXSConfigServerDB_test))
 
     # test runner
     runner = unittest.TextTestRunner()
