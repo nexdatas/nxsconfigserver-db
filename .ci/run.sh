@@ -7,7 +7,7 @@ else
     docker exec  ndts python3 test/runtest.py
 fi
 ERROR=$?
-if [ $? -ne "0" ]
+if [ $ERROR -ne "0" ]
 then
     echo "ERROR "$ERROR
     exit 255
