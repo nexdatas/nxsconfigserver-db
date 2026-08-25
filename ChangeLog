@@ -1,3 +1,7 @@
+2026-08-25 Jan Kotanski <jankotan@gmail.com>
+	* add create_nxsconfig_db script
+	* tagged as v1.11.0
+
 2024-04-09 Jan Kotanski <jankotan@gmail.com>
 	* use setuptools
 	* tagged as v1.10.5
