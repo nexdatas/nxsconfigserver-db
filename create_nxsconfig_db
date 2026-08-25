@@ -1,0 +1,87 @@
+#!/bin/bash
+
+[ -z "$NXSCONFIG_DB_NAME" ] && NXSCONFIG_DB_NAME="nxsconfig"
+[ -z "$PREFIX" ] && PREFIX="/usr"
+
+usage="$(basename "$0") [-h] [-x] [-d=dbname] [-u=dbuser] [-p=prefix] -- create nxsconfig db
+
+
+where:
+    -h  show this help text
+    -x  execute the script
+    -d  database name (default: nxsconfig)
+    -u  tango user (default: tango)
+    -p  sql file prefix (defaut: /usr)"
+
+
+
+for i in "${@:1}"
+do
+    if [[ $i == -* ]] ; then
+        case $i in
+            -h*|--help*)
+                HELP=YES
+                ;;
+            -x*|--execute*)
+		SCRIPT_EXECUTE=YES
+                ;;
+            -u=*|--user=*)
+                TANGO_USER="${i#*=}"
+                ;;
+            -d=*|--dbname=*)
+                NXSCONFIG_DB_NAME="${i#*=}"
+                ;;
+            -p=*|--prefix=*)
+                PREFIX="${i#*=}"
+                ;;
+            *)
+                # unknown option                                                
+                ;;
+        esac
+    fi
+done
+
+if [[ ! -z $HELP ]] || [[ -z $SCRIPT_EXECUTE ]] ; then                                 
+    echo "$usage" >&2
+    exit 1
+fi   
+
+SQL_SCRIPT="$PREFIX/share/nxsconfigserver/mysql_create.sql"
+
+
+if [ ! -f "$SQL_SCRIPT" ]; then
+    echo "Error: SQL script not found at $SQL_SCRIPT"
+    exit 1
+fi
+echo " Creating $NXSCONFIG_DB_NAME DATABASE:"
+
+mysql -u root -p  -e "CREATE DATABASE IF NOT EXISTS $NXSCONFIG_DB_NAME;"
+if [ "$?" != "0" ]; then exit 255; fi
+
+echo " Creating $NXSCONFIG_DB_NAME TABLES:"
+
+mysql -u root -p "$NXSCONFIG_DB_NAME" < "$SQL_SCRIPT"
+if [ "$?" != "0" ]; then exit 255; fi
+
+echo " Database $NXSCONFIG_DB_NAME successfully initialized."
+
+if [ -z "$TANGO_USER" ]; then
+    echo -n "Tango user": 
+    read -s TANGO_USER
+    echo ""
+fi
+
+echo " Adding permissions on $NXSCONFIG_DB_NAME DATABASE to $TANGO_USER USER:"
+
+echo -n "MySQL user password": 
+read -s password
+echo ""
+
+SQL_GRANT_NXSCONFIG="GRANT ALL PRIVILEGES ON "$NXSCONFIG_DB_NAME".* TO '"$TANGO_USER"'@'%' identified by '"$password"';GRANT ALL PRIVILEGES ON "$NXSCONFIG_DB_NAME".* TO '"$TANGO_USER"'@'localhost' identified by '"$password"';FLUSH PRIVILEGES;"
+
+# echo "$SQL_GRANT_NXSCONFIG"
+
+mysql -u root -p  -e "$SQL_GRANT_NXSCONFIG"
+if [ "$?" != "0" ]; then exit 255; fi
+
+echo " Pemissions successfully added."

@@ -38,7 +38,7 @@ def read(fname):
 
 
 #: (:obj:`str`) full release number
-release = '1.10.5'
+release = '1.11.0'
 #: (:obj:`str`) release verion number
 version = ".".join(release.split(".")[:2])
 #: (:obj:`str`) program name
@@ -55,6 +55,9 @@ SETUPDATA = dict(
     keywords="configuration MySQL writer Tango server nexus data",
     url="https://github.com/jkotan/nexdatas/nxsconfigserver-db",
     include_package_data=True,
+    scripts=[
+        'create_nxsconfig_db',
+    ],
     data_files=[('share/nxsconfigserver', ['conf/my.cnf']),
                 ('share/nxsconfigserver', ['conf/mysql_create.sql'])
                 ],
