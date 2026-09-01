@@ -1,20 +1,19 @@
 schema_version: 1
 
 context:
-  version: "1.0.1"
+  version: "1.11.0"
 
 package:
-  name: scingestor
+  name: nxsconfigserver-db
   version: ${{ version }}
 
 source:
-  - path: ../../../
+  - path ../../../
 
 build:
   number: 0
   script:
-    - python setup.py install
-    - python -m pytest test
+    - python -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -22,62 +21,36 @@ requirements:
     - setuptools >=61
     - pip
     - wheel
-    - numpy
-    - argcomplete
-    - nxstools >=3.56.1
-    - requests
-    - pyyaml
-    - pytest
-    - inotify_simple >=2.0.1
   run:
     - python
-    - numpy
-    - argcomplete
-    - nxstools >=3.56.1
-    - requests
-    - pyyaml
-    - inotify_simple >=2.0.1
+    - mysql-client # Provides the 'mysql' command line tool
 
 tests:
-  - python:
-      imports:
-        - scingestor
-        - scingestor.beamtimeWatcher
-        - scingestor.configuration
-        - scingestor.datasetIngestor
-        - scingestor.datasetIngest
-        - scingestor.datasetWatcher
-        - scingestor.logger
-        - scingestor.modelIngest
-        - scingestor.pathConverter
-        - scingestor.safeINotifier
-        - scingestor.scanDirWatcher
-      python_version:
-        - "*"
   - script:
-      - if: unix or osx
-        then:
-          - test -x "$PREFIX/bin/scicat_dataset_ingestor"
-          - test -x "$PREFIX/bin/scicat_dataset_ingest"
-          - test -x "$PREFIX/bin/scicat_ingest"
-          - scicat_dataset_ingestor --help
-          - scicat_dataset_ingest --help
-          - scicat_ingest --help
+      - test -x "$PREFIX/bin/create_nxsconfig_db"
     requirements:
       run:
+        - mysql-server
         - python
+    files:
+      source:
+        - share/nxsconfigserver/mysql_create.sql
+  - package_contents:
+      files:
+        - share/nxsconfigserver/mysql_create.sql
 
 
 about:
-  homepage: https://github.com/jkotan/scingestor
-  repository: https://github.com/jkotan/scingestor
+  homepage: https://github.com/nexdatas/nxsconfigserver-db
+  repository: https://github.com/nexdatas/nxsconfigserver-db
   license: GPL-3.0-or-later
   license_file: COPYRIGHT
-  summary: Scicat Dataset Ingestor
+  summary: NeXDaTaS configuration server database
   description: |
-    The scingestor python package provides a support
-    for scripts which ingest Datasets and OrigDatablocks
-    into the SciCat metadata server.
+    NeXuS Configuration Server is a Tango Server with its implementation
+    based on a MySQL database. It allows to store XML configuration
+    datasources and components. It also gives possibility to select
+    mandatory components and perform the process of component merging.
 
 extra:
   recipe-maintainers:
