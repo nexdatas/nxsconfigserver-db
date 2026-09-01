@@ -38,11 +38,11 @@ jobs:
         run: docker build -t ndts .ci/${OSYS}_py3
       - name: Run the docker
         run: docker run  --name  ndts -d -it -v `pwd`:/home/tango  ndts
-      - name: install tango
+      - name: Install tango
         env:
           OSYS: ${{ matrix.os }}
         run: .ci/install.sh ${OSYS} 3
-      - name: run tests
+      - name: Run tests
         run: .ci/run.sh 3
       - name: Stop the docker
         run: |
@@ -67,11 +67,11 @@ jobs:
         run: docker build -t ndts .ci/${OSYS}_pixi
       - name: Run the docker
         run: docker run  --name  ndts -d -it -v `pwd`:/home/tango  ndts
-      - name: install tango
+      - name: Install tango
         env:
           OSYS: ${{ matrix.os }}
         run: .ci/install_tango.sh
-      - name: run tests
+      - name: Run pixi and tests
         run: .ci/run_pixi.sh
       - name: Stop the docker
         run: |
