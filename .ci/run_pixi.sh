@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
+
 echo "install pixi"
-docker exec  ndts /bin/bash -c 'curl -fsSL https://pixi.sh/install.sh | sh ; export PATH=$HOME/.pixi/bin:$PATH ; pixi shell-hook  --manifest-path .github/workflows/pixi/pixi.toml > .sh.sh ; source .sh.sh ; pixi add  --manifest-path .github/workflows/pixi/pixi.toml rattler-build '
-docker exec  ndts /bin/bash -c 'pwd '
-docker exec  ndts /bin/bash -c 'echo "$HOME" '
+docker exec  ndts /bin/bash -c 'curl -fsSL https://pixi.sh/install.sh | sh ; export PATH=/var/lib/tango/.pixi/bin:$PATH ; cp .github/workflows/pixi/pixi.toml . ; pixi shell-hook  > .sh.sh ; source .sh.sh ; pixi add   numpy "pytango=10.1.4" setuptools pip wheel argcomplete lxml pytz pyyaml  python-dateutil  pytest'
 
 echo "run nxsconfigserver-db"
-docker exec  ndts /bin/bash -c 'source .sh.sh ; pixi run  --manifest-path .github/workflows/pixi/pixi.toml rattler-build build  --recipe .github/workflows/pixi/recipe.yaml'
+docker exec  ndts /bin/bash -c 'source .sh.sh ;  echo "export MYTANGO_PREFIX=$CONDA_PREFIX/bin" > /home/tango/.env ;   python -m pip install . -vv --no-deps --no-build-isolation ;  python -m pytest test'
+
 
 ERROR=$?
 if [ $ERROR -ne "0" ]
