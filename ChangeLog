@@ -1,3 +1,8 @@
+2026-10-19 Jan Kotanski <jankotan@gmail.com>
+	* add pyproject.toml file (#39)
+	* add ubuntu 26.10 tests (#39)
+	* tagged as v1.11.1
+
 2026-08-25 Jan Kotanski <jankotan@gmail.com>
 	* add create_nxsconfig_db script
 	* tagged as v1.11.0
