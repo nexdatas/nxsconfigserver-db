@@ -70,3 +70,7 @@ else
 fi    
 
 if [ "$?" -ne "0" ]; then exit 255; fi
+echo "build python3-nxstools docs"
+docker exec ndts mkdir doc/_static
+docker exec ndts sphinx-build  doc build/sphinx/html
+if [ "$?" -ne "0" ]; then exit 255; fi
