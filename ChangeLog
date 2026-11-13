@@ -1,3 +1,7 @@
+2026-XX-YY Jan Kotanski <jankotan@gmail.com>
+	* change URL for the HDRI repositor (#42)
+	* tagged as v1.11.X
+
 2026-10-19 Jan Kotanski <jankotan@gmail.com>
 	* add pyproject.toml file (#39)
 	* add ubuntu 26.10 tests (#39)
