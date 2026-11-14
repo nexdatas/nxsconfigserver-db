@@ -2,9 +2,9 @@ FROM ubuntu:26.04
 RUN apt-get -qq update && export DEBIAN_FRONTEND=noninteractive && apt-get install -y  curl gpg-agent mariadb-client apt-utils debconf-utils net-tools  omniidl libomniorb4-dev libcos4-dev libzmq3-dev libterm-readline-gnu-perl software-properties-common coreutils procps  apt-transport-https gnupg2 ca-certificates wget  liblog4j1.2-java
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-# RUN curl --retry 20  -v -s https://docs.desy.de/pni-hdri/debian_repo.pub.gpg  | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/debian-hdri-repo.gpg --import
+# RUN curl --retry 20  -v -s https://repos.desy.de/pni-hdri/debian_repo.pub.gpg  | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/debian-hdri-repo.gpg --import
 # RUN chmod 644 /etc/apt/trusted.gpg.d/debian-hdri-repo.gpg
-# RUN cd /etc/apt/sources.list.d && wget https://docs.desy.de/pni-hdri/resolute-pni-hdri.sources
+# RUN cd /etc/apt/sources.list.d && wget https://repos.desy.de/pni-hdri/resolute-pni-hdri.sources
 
 RUN useradd -ms /bin/bash tango
 RUN  /bin/bash -c 'export DEBIAN_FRONTEND=noninteractive; debconf-set-selections <<< "mariadb-server mysql-server/root_password password rootpw"' \
