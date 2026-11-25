@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Welcome to NeXuS Configuration Server Database’s documentation! &#8212; nxsconfigserver-db 1.11.1 documentation</title>
+    <title>Welcome to NeXuS Configuration Server Database’s documentation! &#8212; nxsconfigserver-db 1.12.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/sphinxdoc.css?v=34905f61" />
-    <script src="_static/documentation_options.js?v=c8897f99"></script>
+    <script src="_static/documentation_options.js?v=fe8e256b"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -20,7 +20,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="#">nxsconfigserver-db 1.11.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">nxsconfigserver-db 1.12.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Welcome to NeXuS Configuration Server Database’s documentation!</a></li> 
       </ul>
     </div>  
@@ -74,18 +74,18 @@ and perform the process of component merging.</p>
 <p>Debian Bookworm, Bullseye, Buster as well as Plucky, Noble, Jammy packages can be found in the HDRI repository.</p>
 <p>To install the debian packages, add the PGP repository key</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>su
-<span class="gp">$ </span>curl<span class="w"> </span>-s<span class="w"> </span>http://repos.pni-hdri.de/debian_repo.pub.gpg<span class="w">  </span><span class="p">|</span><span class="w"> </span>gpg<span class="w"> </span>--no-default-keyring<span class="w"> </span>--keyring<span class="w"> </span>gnupg-ring:/etc/apt/trusted.gpg.d/debian-hdri-repo.gpg<span class="w"> </span>--import
+<span class="gp">$ </span>curl<span class="w"> </span>-s<span class="w"> </span>https://repos.desy.de/pni-hdri/debian_repo.pub.gpg<span class="w">  </span><span class="p">|</span><span class="w"> </span>gpg<span class="w"> </span>--no-default-keyring<span class="w"> </span>--keyring<span class="w"> </span>gnupg-ring:/etc/apt/trusted.gpg.d/debian-hdri-repo.gpg<span class="w"> </span>--import
 <span class="gp">$ </span>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/etc/apt/trusted.gpg.d/debian-hdri-repo.gpg
 </pre></div>
 </div>
 <p>and then download the corresponding source list</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>/etc/apt/sources.list.d
-<span class="gp">$ </span>wget<span class="w"> </span>http://repos.pni-hdri.de/bookworm-pni-hdri.sources
+<span class="gp">$ </span>wget<span class="w"> </span>https://repos.desy.de/pni-hdri/bookworm-pni-hdri.sources
 </pre></div>
 </div>
 <p>or</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>/etc/apt/sources.list.d
-<span class="gp">$ </span>wget<span class="w"> </span>http://repos.pni-hdri.de/noble-pni-hdri.list
+<span class="gp">$ </span>wget<span class="w"> </span>https://repos.desy.de/pni-hdri/noble-pni-hdri.list
 </pre></div>
 </div>
 <p>Finally,</p>
@@ -192,7 +192,7 @@ of the JSONSettings attribute.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li class="nav-item nav-item-0"><a href="#">nxsconfigserver-db 1.11.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="#">nxsconfigserver-db 1.12.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Welcome to NeXuS Configuration Server Database’s documentation!</a></li> 
       </ul>
     </div>
