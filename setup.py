@@ -38,7 +38,7 @@ def read(fname):
 
 
 #: (:obj:`str`) full release number
-release = '1.11.1'
+release = '1.12.0'
 #: (:obj:`str`) release verion number
 version = ".".join(release.split(".")[:2])
 #: (:obj:`str`) program name
@@ -61,12 +61,12 @@ SETUPDATA = dict(
     data_files=[('share/nxsconfigserver', ['conf/my.cnf']),
                 ('share/nxsconfigserver', ['conf/mysql_create.sql'])
                 ],
+    python_requires='>=3',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering :: Physics',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        # 'Programming Language :: Python :: 2.7',
         # 'Programming Language :: Python :: 3',
         # 'Programming Language :: Python :: 3.4',
         # 'Programming Language :: Python :: 3.5',
